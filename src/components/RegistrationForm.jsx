@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function meetsPasswordRequirements(password) {
   const charRequirements = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$"); //Checks for upper case, lower case, and number
@@ -15,6 +16,16 @@ function meetsUsernameRequirements(username) {
 }
 
 function RegistrationForm() {
+  let isDuplicateCheckLink = "//localhost:8080/register/usercheck?username="; //INSERT PARAM AFTER THE EQUAL SIGN
+  const [userIsDuplicate, setUserIsDuplicate] = useState(false);
+  const [emailIsDuplicate, setEmailIsDuplicate] = useState(false);
+
+  function isDuplicateUser(url, username) {
+    axios.get(`${url}${username}`).then((res) => {
+      setUserIsDuplicate(res.data);
+    });
+  }
+
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -35,6 +46,12 @@ function RegistrationForm() {
     if (!meetsPasswordRequirements(password)) {
       alert("password requirements not fulfilled");
       return;
+    }
+
+    isDuplicateUser(isDuplicateCheckLink, username);
+    console.log(`User already exists: ${userIsDuplicate}`);
+    if (userIsDuplicate) {
+      alert("User already exists.\n Please Select a Different Username");
     }
   }
 
@@ -84,7 +101,11 @@ function RegistrationForm() {
         Show Password
       </label>
       <br />
-      <button className="LoginAndRegisterButtons" onClick={submitRegistration}>
+      <button
+        type="button"
+        className="LoginAndRegisterButtons"
+        onClick={submitRegistration}
+      >
         Submit
       </button>
     </form>

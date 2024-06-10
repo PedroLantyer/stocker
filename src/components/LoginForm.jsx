@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function LoginForm() {
@@ -19,3 +21,18 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
+/* API DATA FETCH DEMONSTRATION
+  const apiLinkArr = ["https://catfact.ninja/fact"];
+  const [apiRes, setApiRes] = useState("");
+
+  function getApiRes(url) {
+    axios.get(url).then((res) => {
+      console.log(res.data.fact);
+      setApiRes(res.data.fact);
+    });
+  }
+
+  useEffect(() => {
+    getApiRes(apiLinkArr[0]);
+  }, []); */
