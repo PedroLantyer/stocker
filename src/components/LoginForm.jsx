@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { validateLoginInfo } from "../utils/loginValidation";
+import { appUrl } from "../utils/routerPath";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -15,14 +16,31 @@ function LoginForm() {
       return;
     }
 
-    const loginIsValid = await validateLoginInfo(username, password);
+    //const loginIsValid = await validateLoginInfo(username, password);
+    const userObj = await validateLoginInfo(username, password);
+    try {
+      if (typeof userObj !== "object") {
+        throw "Invalid return for login validation";
+      }
 
-    if (!loginIsValid) {
+      if (userObj.id < 0) {
+        alert("Invalid credentials");
+      }
+
+      console.log("Logged In!");
+      nav(appUrl, {
+        state: { logged: true, id: userObj.id, username: userObj.username },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    /*if (!loginIsValid) {
       alert("Invalid credentials");
     } else {
       console.log("Logged In!");
-      nav("/helloworld", { state: loginIsValid }); //helloworld is place holder
-    }
+      nav(appUrl, { state: loginIsValid });
+    }*/
   }
 
   return (

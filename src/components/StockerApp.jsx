@@ -2,21 +2,23 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUrl } from "../utils/routerPath";
 
-function HelloWorld() {
+function StockerApp() {
   const { state } = useLocation();
+  const { logged, id, username } = state;
+
   const nav = useNavigate();
 
   useEffect(() => {
-    typeof state !== "boolean" || !state
+    typeof logged !== "boolean" || !state
       ? nav(loginUrl)
-      : console.log(`Logged in: ${state}`);
+      : console.log(`Welcome ${username}`);
   }); //IF Not logged in, send user back
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Stocker App</h1>
     </div>
   );
 }
 
-export default HelloWorld;
+export default StockerApp;

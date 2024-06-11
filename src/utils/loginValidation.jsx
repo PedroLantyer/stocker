@@ -1,16 +1,20 @@
 import axios from "axios";
-import { loginValidationLink } from "./apiLinks";
+import { getLoginValidationUrl } from "./apiLinks";
 
 async function validateLoginInfo(usernameStr, passwordStr) {
-  const res = await axios.get(
-    `${loginValidationLink[0]}${usernameStr}${loginValidationLink[1]}${passwordStr}`
-  );
   try {
-    const result = res.data;
-    if (typeof result !== "boolean") {
-      throw "Error returned variable wasn't a boolean";
+    const url = getLoginValidationUrl(usernameStr, passwordStr);
+    if (url === "ERROR") {
+      throw "Error invalid API URL";
     }
-    return result;
+
+    const res = await axios.get(url);
+    const resultObj = res.data;
+
+    if (typeof resultObj !== "object") {
+      throw "Error, API returned invalid results";
+    }
+    return resultObj;
   } catch (error) {
     console.log(error);
     return false;

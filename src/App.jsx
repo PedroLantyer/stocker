@@ -1,10 +1,10 @@
 import "./styles/App.css";
-import LoginForm from "./components/LoginForm";
+import StockerApp from "./components/StockerApp";
 
 function App() {
   return (
     <div>
-      <LoginForm />
+      <StockerApp />
     </div>
   );
 }

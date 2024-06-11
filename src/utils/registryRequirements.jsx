@@ -2,7 +2,7 @@ import axios from "axios";
 import { registerLink } from "./apiLinks";
 
 function meetsPasswordRequirements(password) {
-  const charRequirements = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$"); //Checks for upper case, lower case, and number
+  const charRequirements = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$"); //Checks for upper case, lower case, and number. NEED TO ALTER TO REMOVE SPECIAL CHARS
   const result =
     password.length >= 8 && charRequirements.test(password) ? true : false;
   return result;

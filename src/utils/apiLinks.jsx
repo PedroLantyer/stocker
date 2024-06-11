@@ -1,17 +1,21 @@
-const loginValidationLink = [
-  "http://localhost:8080/login?username=",
-  "&password=",
-];
+const hostLink = "http://localhost:8080";
 
-const registerLink = "http://localhost:8080/register?username=";
+function getLoginValidationUrl(username, password) {
+  try {
+    const url = `${hostLink}/login?username=${username}&password=${password}`;
+    return url;
+  } catch (error) {
+    console.log(error);
+    return "ERROR";
+  }
+}
 
-const userIsDuplicateCheckLink =
-  "//localhost:8080/register/usercheck?username="; //INSERT PARAM AFTER THE EQUAL SIGN
-const emailIsDuplicateCheckLink =
-  "//localhost:8080/register/duplicatemail?email="; //INSERT PARAM AFTER THE EQUAL SIGN
+const registerLink = `${hostLink}/register`;
+const userIsDuplicateCheckLink = `${hostLink}/register/usercheck?username=`; //INSERT PARAM AFTER THE EQUAL SIGN
+const emailIsDuplicateCheckLink = `${hostLink}/register/duplicatemail?email=`; //INSERT PARAM AFTER THE EQUAL SIGN
 
 export {
-  loginValidationLink,
+  getLoginValidationUrl,
   registerLink,
   userIsDuplicateCheckLink,
   emailIsDuplicateCheckLink,
