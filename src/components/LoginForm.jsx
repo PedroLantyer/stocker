@@ -34,13 +34,6 @@ function LoginForm() {
     } catch (error) {
       console.log(error);
     }
-
-    /*if (!loginIsValid) {
-      alert("Invalid credentials");
-    } else {
-      console.log("Logged In!");
-      nav(appUrl, { state: loginIsValid });
-    }*/
   }
 
   return (
@@ -51,6 +44,7 @@ function LoginForm() {
         id="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        autoComplete="off"
       />
 
       <p className="LoginFormPar">Password</p>
@@ -60,6 +54,7 @@ function LoginForm() {
         value={password}
         type={passwordVisible ? "text" : "password"}
         onChange={(e) => setPassword(e.target.value)}
+        autoComplete="off"
       />
 
       <br />

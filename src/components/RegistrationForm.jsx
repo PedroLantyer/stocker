@@ -75,6 +75,8 @@ function RegistrationForm() {
         value={username}
         className="InputBox"
         onChange={(e) => setUsername(e.target.value)}
+        id="inputBoxUsername"
+        autoComplete="off"
       />
 
       <p>Email</p>
@@ -83,6 +85,8 @@ function RegistrationForm() {
         value={email}
         className="InputBox"
         onChange={(e) => setEmail(e.target.value)}
+        id="inputBoxEmail"
+        autoComplete="off"
       />
 
       <p>Password</p>
@@ -93,6 +97,8 @@ function RegistrationForm() {
         onChange={(e) => {
           setPassword(e.target.value);
         }}
+        id="inputBoxPassword"
+        autoComplete="off"
       />
 
       <p>Confirm Password</p>
@@ -101,6 +107,8 @@ function RegistrationForm() {
         type={passwordVisible ? "text" : "password"}
         className="InputBox"
         onChange={(e) => setPasswordRepeat(e.target.value)}
+        id="inputBoxConfirmPassword"
+        autoComplete="off"
       />
 
       <br />
