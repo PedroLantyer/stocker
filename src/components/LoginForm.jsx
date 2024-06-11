@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validateLoginInfo } from "../utils/loginValidation";
 
 function LoginForm() {
@@ -7,6 +7,8 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+
+  const nav = useNavigate();
 
   async function attemptLogin() {
     if (username.length == 0 || password.length == 0) {
@@ -23,6 +25,7 @@ function LoginForm() {
     }
 
     console.log("Logged In!");
+    nav("/helloworld"); //helloworld is place holder
   }
 
   return (
