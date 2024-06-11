@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   emailIsDuplicateCheckLink,
   userIsDuplicateCheckLink,
@@ -7,6 +7,7 @@ import {
 import {
   meetsPasswordRequirements,
   meetsUsernameRequirements,
+  register,
   verifyEmailIsDuplicate,
   verifyUserIsDuplicate,
 } from "../utils/registryRequirements";
@@ -18,6 +19,8 @@ function RegistrationForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
+
+  const nav = useNavigate();
 
   async function submitRegistration() {
     if (password !== passwordRepeat) {
@@ -54,7 +57,14 @@ function RegistrationForm() {
       );
       return;
     }
-    console.log("Success!");
+
+    const registerSuccessful = await register(username, email, password);
+    if (registerSuccessful) {
+      console.log("Success!");
+      nav(loginUrl);
+    } else {
+      console.log("registration failed");
+    }
   }
 
   return (

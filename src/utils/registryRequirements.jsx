@@ -1,4 +1,5 @@
 import axios from "axios";
+import { registerLink } from "./apiLinks";
 
 function meetsPasswordRequirements(password) {
   const charRequirements = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$"); //Checks for upper case, lower case, and number
@@ -43,8 +44,20 @@ async function verifyUserIsDuplicate(url, username) {
 }
 
 async function register(username, email, password) {
-  //const res = await axios.get()
-  console.log();
+  //const url = `${urlArr[0]}${username}${urlArr[1]}${email}${urlArr[2]}${password}}`;
+  //const res = await axios.get(url);
+  try {
+    const url = `${registerLink[0]}${username}${registerLink[1]}${email}${registerLink[2]}${password}}`;
+    const res = await axios.get(url);
+    const result = res.data;
+    if (typeof result !== "boolean") {
+      throw "Error returned variable wasn't a boolean";
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return true;
+  }
 }
 
 export {
@@ -52,4 +65,5 @@ export {
   meetsUsernameRequirements,
   verifyEmailIsDuplicate,
   verifyUserIsDuplicate,
+  register,
 };
