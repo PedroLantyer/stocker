@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { validateLoginInfo } from "../utils/loginValidation";
 
-function LoginForm() {
+function LoginForm({ setLoginStatus }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  /* const [isLogged, setIsLogged] = useState(false); */
 
   const nav = useNavigate();
 
@@ -18,11 +18,13 @@ function LoginForm() {
 
     const loginIsValid = await validateLoginInfo(username, password);
 
-    setIsLogged(loginIsValid);
+    //setIsLogged(loginIsValid);
+    setLoginStatus(loginIsValid);
     if (!loginIsValid) {
       alert("Invalid credentials");
-      return;
+      //return;
     }
+    setLoginStatus(loginIsValid);
 
     console.log("Logged In!");
     nav("/helloworld"); //helloworld is place holder
