@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   emailIsDuplicateCheckLink,
   userIsDuplicateCheckLink,
@@ -9,6 +10,7 @@ import {
   verifyEmailIsDuplicate,
   verifyUserIsDuplicate,
 } from "../utils/registryRequirements";
+import { loginUrl } from "../utils/routerPath";
 
 function RegistrationForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -108,6 +110,9 @@ function RegistrationForm() {
       >
         Submit
       </button>
+
+      <br />
+      <Link to={loginUrl}>Already Have an account? Login</Link>
     </form>
   );
 }
