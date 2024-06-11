@@ -1,38 +1,23 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-function meetsPasswordRequirements(password) {
-  const charRequirements = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$"); //Checks for upper case, lower case, and number
-  const result =
-    password.length >= 8 && charRequirements.test(password) ? true : false;
-  return result;
-}
-
-function meetsUsernameRequirements(username) {
-  const invalidChars = new RegExp("[^a-zA-Z0-9]"); //Checks for any character that isn't upper case, lower case, or num
-  const result =
-    username.length >= 6 && !invalidChars.test(username) ? true : false;
-  return result;
-}
+import { useState } from "react";
+import {
+  emailIsDuplicateCheckLink,
+  userIsDuplicateCheckLink,
+} from "../utils/apiLinks";
+import {
+  meetsPasswordRequirements,
+  meetsUsernameRequirements,
+  verifyEmailIsDuplicate,
+  verifyUserIsDuplicate,
+} from "../utils/registryRequirements";
 
 function RegistrationForm() {
-  let isDuplicateCheckLink = "//localhost:8080/register/usercheck?username="; //INSERT PARAM AFTER THE EQUAL SIGN
-  const [userIsDuplicate, setUserIsDuplicate] = useState(false);
-  const [emailIsDuplicate, setEmailIsDuplicate] = useState(false);
-
-  function isDuplicateUser(url, username) {
-    axios.get(`${url}${username}`).then((res) => {
-      setUserIsDuplicate(res.data);
-    });
-  }
-
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
 
-  function submitRegistration() {
+  async function submitRegistration() {
     if (password !== passwordRepeat) {
       alert("passwords don't match");
       return;
@@ -48,11 +33,26 @@ function RegistrationForm() {
       return;
     }
 
-    isDuplicateUser(isDuplicateCheckLink, username);
-    console.log(`User already exists: ${userIsDuplicate}`);
+    const userIsDuplicate = await verifyUserIsDuplicate(
+      userIsDuplicateCheckLink,
+      username
+    );
     if (userIsDuplicate) {
       alert("User already exists.\n Please Select a Different Username");
+      return;
     }
+
+    const emailIsDuplicate = await verifyEmailIsDuplicate(
+      emailIsDuplicateCheckLink,
+      email
+    );
+    if (emailIsDuplicate) {
+      alert(
+        "The selected e-mail is already registered. Please us a Different one"
+      );
+      return;
+    }
+    console.log("Success!");
   }
 
   return (

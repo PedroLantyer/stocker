@@ -1,38 +1,76 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { validateLoginInfo } from "../utils/loginValidation";
 
 function LoginForm() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+
+  async function attemptLogin() {
+    if (username.length == 0 || password.length == 0) {
+      alert("Please type your username and password");
+      return;
+    }
+
+    const loginIsValid = await validateLoginInfo(username, password);
+
+    setIsLogged(loginIsValid);
+    if (!loginIsValid) {
+      alert("Invalid credentials");
+      return;
+    }
+
+    console.log("Logged In!");
+  }
+
   return (
     <form className="LoginForm">
       <p className="LoginFormPar">Username</p>
-      <input className="InputBox" id="username"></input>
+      <input
+        className="InputBox"
+        id="username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+
       <p className="LoginFormPar">Password</p>
-      <input className="InputBox" id="password" type="password"></input>
+      <input
+        className="InputBox"
+        id="password"
+        value={password}
+        type={passwordVisible ? "text" : "password"}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
       <br />
-      <button className="LoginAndRegisterButtons">Login</button>
+      <label>
+        <input
+          type="checkbox"
+          id="showPasswordCheckBox"
+          onClick={() => setPasswordVisible(!passwordVisible)}
+        />
+        Show Password
+      </label>
+      <br />
+
+      <button
+        type="button"
+        className="LoginAndRegisterButtons"
+        onClick={attemptLogin}
+      >
+        Login
+      </button>
 
       <p className="LoginFormPar">{"Don't have an account?"}</p>
       <Link to="/registrationform">
-        <button className="LoginAndRegisterButtons">Register</button>
+        <button type="button" className="LoginAndRegisterButtons">
+          Register
+        </button>
       </Link>
     </form>
   );
 }
 
 export default LoginForm;
-
-/* API DATA FETCH DEMONSTRATION
-  const apiLinkArr = ["https://catfact.ninja/fact"];
-  const [apiRes, setApiRes] = useState("");
-
-  function getApiRes(url) {
-    axios.get(url).then((res) => {
-      console.log(res.data.fact);
-      setApiRes(res.data.fact);
-    });
-  }
-
-  useEffect(() => {
-    getApiRes(apiLinkArr[0]);
-  }, []); */
