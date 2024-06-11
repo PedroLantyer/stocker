@@ -42,6 +42,11 @@ async function verifyUserIsDuplicate(url, username) {
   }
 }
 
+async function register(username, email, password) {
+  //const res = await axios.get()
+  console.log();
+}
+
 export {
   meetsPasswordRequirements,
   meetsUsernameRequirements,
