@@ -44,11 +44,11 @@ async function verifyUserIsDuplicate(url, username) {
 }
 
 async function register(username, email, password) {
-  //const url = `${urlArr[0]}${username}${urlArr[1]}${email}${urlArr[2]}${password}}`;
-  //const res = await axios.get(url);
   try {
-    const url = `${registerLink[0]}${username}${registerLink[1]}${email}${registerLink[2]}${password}}`;
-    const res = await axios.get(url);
+    const url = registerLink;
+    const userObj = { username: username, email: email, password: password };
+
+    const res = await axios.post(url, userObj);
     const result = res.data;
     if (typeof result !== "boolean") {
       throw "Error returned variable wasn't a boolean";
