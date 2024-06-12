@@ -1,5 +1,9 @@
 import axios from "axios";
-import { deleteProductLink, getProductListLink } from "./apiLinks";
+import {
+  deleteProductLink,
+  getProductListLink,
+  getUpdateProductNameUrl,
+} from "./apiLinks";
 
 async function getProductList(proprietaryId) {
   try {
@@ -33,4 +37,22 @@ async function deleteProduct(productId) {
   }
 }
 
-export { getProductList, deleteProduct };
+async function updateProductName(productId, updatedName) {
+  try {
+    const url = getUpdateProductNameUrl(productId, updatedName);
+    if (url === "ERROR") {
+      throw "Error: API URL is invalid";
+    }
+    const res = await axios.patch(url);
+    const result = res.data;
+    if (typeof result !== "boolean") {
+      throw "Error: returned variable wasn't a boolean";
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+export { getProductList, deleteProduct, updateProductName };

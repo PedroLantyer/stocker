@@ -2,12 +2,25 @@
 import { useState } from "react";
 import "../styles/EditProduct.css";
 import ReactDom from "react-dom";
+import { updateProductName } from "../utils/productManagament";
 
-function EditProductModal({ open, onClose }) {
+function EditProductModal({ open, onClose, productId }) {
   const [newProductName, setNewProductName] = useState("");
   const [newUnitCount, setNewUnitCount] = useState(-1);
   const [nameWillChange, setNameWillChange] = useState(false);
   const [countWillChange, setCountWillChange] = useState(false);
+
+  function handleConfirmClick() {
+    console.log(nameWillChange);
+    if (nameWillChange) {
+      updateProductName(productId, newProductName).then(() => {
+        onClose();
+      });
+    }
+    if (countWillChange) {
+      console.log(countWillChange);
+    }
+  }
 
   if (!open) return null;
   return ReactDom.createPortal(
@@ -53,9 +66,19 @@ function EditProductModal({ open, onClose }) {
           />
           <br />
 
-          <button type="button" onClick={onClose}>
-            Close modal
-          </button>
+          <div className="ButtonContainer">
+            <button
+              type="button"
+              onClick={() => handleConfirmClick()}
+              disabled={countWillChange || nameWillChange ? false : true}
+              className="ButtonConfirm"
+            >
+              Confirm
+            </button>
+            <button type="button" onClick={onClose} className="ButtonCancel">
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </>,

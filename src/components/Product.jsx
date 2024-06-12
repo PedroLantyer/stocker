@@ -11,6 +11,10 @@ function Product({ productObj, productCallBack }) {
   }
 
   const [editIsOpen, setEditIsOpen] = useState(false);
+  function handleClose() {
+    setEditIsOpen(false);
+    productCallBack();
+  }
 
   return (
     <ul>
@@ -33,7 +37,8 @@ function Product({ productObj, productCallBack }) {
           </button>
           <EditProductModal
             open={editIsOpen}
-            onClose={() => setEditIsOpen(false)}
+            onClose={() => handleClose()}
+            productId={productObj.productId}
           />
         </div>
         <div className="DeleteButtonBlock">

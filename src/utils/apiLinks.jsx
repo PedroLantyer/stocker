@@ -10,6 +10,16 @@ function getLoginValidationUrl(username, password) {
   }
 }
 
+function getUpdateProductNameUrl(productId, updatedName) {
+  try {
+    const url = `${hostLink}/updateproductname?productId=${productId}&updatedName=${updatedName}`;
+    return url;
+  } catch (error) {
+    console.log(error);
+    return " ERROR";
+  }
+}
+
 const deleteProductLink = `${hostLink}/deleteproduct?productId=`;
 const getProductListLink = `${hostLink}/getproductlist?proprietaryId=`;
 const registerLink = `${hostLink}/register`;
@@ -18,6 +28,7 @@ const emailIsDuplicateCheckLink = `${hostLink}/register/duplicatemail?email=`; /
 
 export {
   getLoginValidationUrl,
+  getUpdateProductNameUrl,
   getProductListLink,
   deleteProductLink,
   registerLink,
