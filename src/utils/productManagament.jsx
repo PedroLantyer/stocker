@@ -95,4 +95,10 @@ async function addProduct(productName, unitCount, proprietaryId) {
   }
 }
 
-export { getProductList, deleteProduct, updateProductName, updateUnitCount };
+export {
+  getProductList,
+  deleteProduct,
+  updateProductName,
+  updateUnitCount,
+  addProduct,
+};

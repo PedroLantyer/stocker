@@ -135,3 +135,13 @@ ul {
   background-color: inherit;
   border-style: none;
 }
+
+.Footer {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+}
+.usernameLabel {
+  color: cyan;
+}

@@ -16,8 +16,12 @@ function StockerApp() {
 
   const [addIsOpen, setAddIsOpen] = useState(false);
 
+  function handleClose() {
+    setAddIsOpen(false);
+    getProducts(true);
+  }
+
   function getProducts(logged) {
-    console.log(`Got go get products`);
     if (logged) {
       getProductList(id).then((res) => setProducts(res));
     }
@@ -65,15 +69,27 @@ function StockerApp() {
         ))}
       </ul>
       <div className="ButtonAddItemContainer">
-        <AddProductModal open={addIsOpen} onClose={getProducts(true)} />
+        <AddProductModal
+          open={addIsOpen}
+          onClose={() => {
+            handleClose();
+          }}
+          proprietaryId={id}
+        />
         <button
           type="button"
           className="ButtonAddItem"
-          onClick={setAddIsOpen(true)}
+          onClick={() => setAddIsOpen(true)}
         >
           <PlusCircle />
         </button>
       </div>
+      <footer className="Footer">
+        <p>Logged on!</p>
+        <p>
+          User: <span className="usernameLabel">{username}</span>
+        </p>
+      </footer>
     </div>
   );
 }

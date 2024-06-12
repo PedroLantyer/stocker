@@ -1,17 +1,27 @@
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
+import "../styles/EditProduct.css";
 import ReactDom from "react-dom";
+import { addProduct } from "../utils/productManagament";
 
-function AddProductModal({ open, onClose }) {
+function AddProductModal({ open, onClose, proprietaryId }) {
   const [newProductName, setNewProductName] = useState("");
   const [newUnitCount, setNewUnitCount] = useState(-1);
 
-  function handleConfirmClick() {
-    if (newProductName === "" || newUnitCount < 0) {
-      alert("Invalid input");
+  async function handleConfirmClick() {
+    if (newProductName.size < 3 || newUnitCount < 0) {
+      alert(
+        "Invalid input. Please insert a unit count equal or larger than zero, and a product with at least 3 chars"
+      );
       return;
     }
+    await addProduct(newProductName, newUnitCount, proprietaryId).then(
+      (res) => {
+        console.log(`Product Added: ${res}`);
+      }
+    );
+    onClose();
   }
 
   if (!open) {
@@ -20,7 +30,7 @@ function AddProductModal({ open, onClose }) {
   return ReactDom.createPortal(
     <>
       <div className="Overlay" />
-      <div className="AddProductModal">
+      <div className="EditProductModal">
         <form>
           <label>New Product Name:</label>
           <br />
