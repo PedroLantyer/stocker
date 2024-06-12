@@ -22,11 +22,19 @@ function Product({ productObj, productCallBack }) {
           <p className="ProductUnitCount">{productObj.unitCount}</p>
         </div>
         <div className="EditButtonBlock">
-          <button type="button" className="EditItemButton">
+          <button
+            type="button"
+            className="EditItemButton"
+            onClick={() => setEditIsOpen(true)}
+          >
             <div className="EditItemButton">
               <EditButton />
             </div>
           </button>
+          <EditProductModal
+            open={editIsOpen}
+            onClose={() => setEditIsOpen(false)}
+          />
         </div>
         <div className="DeleteButtonBlock">
           <button
