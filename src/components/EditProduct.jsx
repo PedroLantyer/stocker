@@ -13,14 +13,20 @@ function EditProductModal({ open, onClose }) {
       <div className="Overlay" />
       <div className="EditProductModal">
         <form>
+          <label>New Product Name:</label>
+          <br />
           <input
             onChange={(e) => setNewProductName(e.target.value)}
             className="InputBoxNewName"
           />
           <br />
+
+          <label>New Product Count:</label>
+          <br />
           <input
             type="number"
             onChange={(e) => setNewUnitCount(e.target.value)}
+            className="InputBoxAlterCount"
           />
           <br />
           <button type="button" onClick={onClose}>

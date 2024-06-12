@@ -1,4 +1,5 @@
 .EditProductModal {
+  text-align: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -23,5 +24,15 @@
   background-color: whitesmoke;
   color: black;
   font-family: Garamond, serif;
-  font-size: 1em;
+  font-size: 1.2em;
+  border-style: none;
+  border-radius: 0.3em;
+}
+.InputBoxAlterCount {
+  background-color: whitesmoke;
+  color: black;
+  font-family: Garamond, serif;
+  font-size: 1.2em;
+  border-style: none;
+  border-radius: 0.3em;
 }
