@@ -2,11 +2,15 @@
 import TrashIcon from "../assets/trash.svg?react";
 import EditButton from "../assets/editButton.svg?react";
 import { deleteProduct } from "../utils/productManagament";
+import EditProductModal from "./EditProduct";
+import { useState } from "react";
 
 function Product({ productObj, productCallBack }) {
   function triggerDeletion() {
     deleteProduct(productObj.productId).then(productCallBack);
   }
+
+  const [editIsOpen, setEditIsOpen] = useState(false);
 
   return (
     <ul>
