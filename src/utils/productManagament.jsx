@@ -18,4 +18,8 @@ async function getProductList(proprietaryId) {
   }
 }
 
-export { getProductList };
+function deleteProduct(productId) {
+  console.log(productId);
+}
+
+export { getProductList, deleteProduct };

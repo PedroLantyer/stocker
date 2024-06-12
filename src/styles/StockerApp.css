@@ -1,26 +1,58 @@
 .StockerApp {
   align-content: center;
   background-color: #242424;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 1em;
   color: white;
-  height: 80vw;
-  width: 80vw;
+  font-family: Garamond, serif;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
   position: relative;
-  border-radius: 3vh;
+  width: 80vw;
+}
+
+.ProductList {
+  background-color: whitesmoke;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 92%;
+  border-radius: 0.5em;
+}
+ul {
+  margin-left: 0;
+  padding: 0;
 }
 
 .ProductGrid {
+  list-style: none;
+  width: 100%;
   display: grid;
-  grid-template-columns: 55vw 5vw 10vw;
+  font-weight: bold;
   margin-bottom: 0.2em;
+  grid-template-columns: 80% 10% 10%;
 }
 .ProductName {
+  list-style: none;
+  width: inherit;
+  height: 100%;
   text-align: left;
+  font-size: 1.2em;
+  padding-left: 0.2em;
+  color: black;
 }
 .ProductUnitCount {
-  text-align: left;
+  text-align: right;
+  font-size: 1.1em;
+  padding-left: 1em;
+  color: black;
 }
 .DeleteProductButton {
-  background-color: whitesmoke;
+  text-align: right;
+  height: 100%;
+  padding-right: 2em;
+  background-color: inherit;
   color: red;
+  border: none;
 }

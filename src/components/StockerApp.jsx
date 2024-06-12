@@ -12,26 +12,44 @@ function StockerApp() {
   const { logged, username, id } = stateObj;
   const nav = useNavigate();
 
-  useEffect(() => {
+  function getProducts(logged) {
+    if (logged) {
+      getProductList(id).then((res) => setProducts(res));
+    }
+  }
+
+  function productCallBack() {
+    getProducts(true);
+  }
+
+  function leaveOrStay(id, logged) {
     if (id < 1 || !logged) {
       console.log("Not logged in, sending you back");
       nav(loginUrl);
     } else {
       console.log(`Welcome ${username}`);
     }
-  }); //IF Not logged in, send user back to login screen
+  }
+
+  useEffect(() => {
+    leaveOrStay(id, logged);
+  }, []);
 
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    getProductList(2).then((res) => setProducts(res));
+    getProducts(logged);
   }, []);
 
   return (
     <div className="StockerApp">
       <h1>Stocker App</h1>
-      <ul>
+      <ul className="ProductList">
         {products.map((product) => (
-          <Product productObj={product} key={product.productId} />
+          <Product
+            productObj={product}
+            productCallBack={productCallBack}
+            key={product.productId}
+          />
         ))}
       </ul>
     </div>
