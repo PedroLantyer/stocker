@@ -11,11 +11,6 @@ function LoginForm() {
   const nav = useNavigate();
 
   async function attemptLogin() {
-    if (username.length == 0 || password.length == 0) {
-      alert("Please type your username and password");
-      return;
-    }
-
     const userObj = await validateLoginInfo(username, password);
     try {
       if (typeof userObj !== "object") {
@@ -44,6 +39,7 @@ function LoginForm() {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         autoComplete="off"
+        required={true}
       />
 
       <p className="LoginFormPar">Password</p>
@@ -54,6 +50,7 @@ function LoginForm() {
         type={passwordVisible ? "text" : "password"}
         onChange={(e) => setPassword(e.target.value)}
         autoComplete="off"
+        required={true}
       />
 
       <br />
