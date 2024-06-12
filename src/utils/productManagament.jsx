@@ -3,6 +3,7 @@ import {
   deleteProductLink,
   getProductListLink,
   getUpdateProductNameUrl,
+  getUpdateUnitCountUrl,
 } from "./apiLinks";
 
 async function getProductList(proprietaryId) {
@@ -55,4 +56,22 @@ async function updateProductName(productId, updatedName) {
   }
 }
 
-export { getProductList, deleteProduct, updateProductName };
+async function updateUnitCount(productId, unitCount) {
+  try {
+    const url = getUpdateUnitCountUrl(productId, unitCount);
+    if (url === " ERROR") {
+      throw "Error: API URL is invalid";
+    }
+    const res = await axios.patch(url);
+    const result = res.data;
+    if (typeof result !== "boolean") {
+      throw "Error: returned variable wasn't a boolean";
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+export { getProductList, deleteProduct, updateProductName, updateUnitCount };

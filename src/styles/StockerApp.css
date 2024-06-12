@@ -123,3 +123,15 @@ ul {
   margin-right: 0.5em;
   width: 1em;
 }
+.ButtonAddItemContainer {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ButtonAddItem {
+  width: 5em;
+  height: 5em;
+  color: goldenrod;
+  background-color: inherit;
+  border-style: none;
+}

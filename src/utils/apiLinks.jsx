@@ -20,6 +20,16 @@ function getUpdateProductNameUrl(productId, updatedName) {
   }
 }
 
+function getUpdateUnitCountUrl(productId, unitCount) {
+  try {
+    const url = `${hostLink}/updateunitcount?productId=${productId}&unitCount=${unitCount}`;
+    return url;
+  } catch (error) {
+    console.log(error);
+    return "ERROR";
+  }
+}
+
 const deleteProductLink = `${hostLink}/deleteproduct?productId=`;
 const getProductListLink = `${hostLink}/getproductlist?proprietaryId=`;
 const registerLink = `${hostLink}/register`;
@@ -29,6 +39,7 @@ const emailIsDuplicateCheckLink = `${hostLink}/register/duplicatemail?email=`; /
 export {
   getLoginValidationUrl,
   getUpdateProductNameUrl,
+  getUpdateUnitCountUrl,
   getProductListLink,
   deleteProductLink,
   registerLink,

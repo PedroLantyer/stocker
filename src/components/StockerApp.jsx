@@ -5,6 +5,7 @@ import "../styles/StockerApp.css";
 import getDefaultState from "../utils/getDefaultState";
 import { getProductList } from "../utils/productManagament";
 import Product from "./Product";
+import PlusCircle from "../assets/plusCircle.svg?react";
 
 function StockerApp() {
   const { state } = useLocation();
@@ -12,7 +13,10 @@ function StockerApp() {
   const { logged, username, id } = stateObj;
   const nav = useNavigate();
 
+  const [addIsOpen, setAddIsOpen] = useState(false);
+
   function getProducts(logged) {
+    console.log(`Got go get products`);
     if (logged) {
       getProductList(id).then((res) => setProducts(res));
     }
@@ -59,6 +63,15 @@ function StockerApp() {
           />
         ))}
       </ul>
+      <div className="ButtonAddItemContainer">
+        <button
+          type="button"
+          className="ButtonAddItem"
+          onClick={setAddIsOpen(true)}
+        >
+          <PlusCircle />
+        </button>
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "../styles/EditProduct.css";
 import ReactDom from "react-dom";
-import { updateProductName } from "../utils/productManagament";
+import { updateProductName, updateUnitCount } from "../utils/productManagament";
 
 function EditProductModal({ open, onClose, productId }) {
   const [newProductName, setNewProductName] = useState("");
@@ -10,16 +10,18 @@ function EditProductModal({ open, onClose, productId }) {
   const [nameWillChange, setNameWillChange] = useState(false);
   const [countWillChange, setCountWillChange] = useState(false);
 
-  function handleConfirmClick() {
-    console.log(nameWillChange);
+  async function handleConfirmClick() {
     if (nameWillChange) {
-      updateProductName(productId, newProductName).then(() => {
-        onClose();
+      await updateProductName(productId, newProductName).then((res) => {
+        console.log(`Product updated: ${res}`);
       });
     }
     if (countWillChange) {
-      console.log(countWillChange);
+      await updateUnitCount(productId, newUnitCount).then((res) => {
+        console.log(`Unit Count Updated: ${res}`);
+      });
     }
+    onClose();
   }
 
   if (!open) return null;
