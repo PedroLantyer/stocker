@@ -10,12 +10,14 @@ function getLoginValidationUrl(username, password) {
   }
 }
 
+const getProductListLink = `${hostLink}/getproductlist?proprietaryId=`;
 const registerLink = `${hostLink}/register`;
 const userIsDuplicateCheckLink = `${hostLink}/register/usercheck?username=`; //INSERT PARAM AFTER THE EQUAL SIGN
 const emailIsDuplicateCheckLink = `${hostLink}/register/duplicatemail?email=`; //INSERT PARAM AFTER THE EQUAL SIGN
 
 export {
   getLoginValidationUrl,
+  getProductListLink,
   registerLink,
   userIsDuplicateCheckLink,
   emailIsDuplicateCheckLink,

@@ -1,15 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUrl } from "../utils/routerPath";
 import "../styles/StockerApp.css";
-
-function getDefaultState(state) {
-  if (state === null || typeof state !== "object") {
-    const defaultState = { logged: false, username: "", id: -1 };
-    return defaultState;
-  }
-  return state;
-}
+import getDefaultState from "../utils/getDefaultState";
+import { getProductList } from "../utils/productManagament";
+import Product from "./Product";
 
 function StockerApp() {
   const { state } = useLocation();
@@ -26,9 +21,19 @@ function StockerApp() {
     }
   }); //IF Not logged in, send user back to login screen
 
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    getProductList(2).then((res) => setProducts(res));
+  }, []);
+
   return (
     <div className="StockerApp">
       <h1>Stocker App</h1>
+      <ul>
+        {products.map((product) => (
+          <Product productObj={product} key={product.productId} />
+        ))}
+      </ul>
     </div>
   );
 }
