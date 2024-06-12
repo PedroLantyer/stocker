@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getProductListLink } from "./apiLinks";
+import { deleteProductLink, getProductListLink } from "./apiLinks";
 
 async function getProductList(proprietaryId) {
   try {
@@ -18,8 +18,19 @@ async function getProductList(proprietaryId) {
   }
 }
 
-function deleteProduct(productId) {
-  console.log(productId);
+async function deleteProduct(productId) {
+  try {
+    const url = deleteProductLink;
+    const res = await axios.delete(`${url}${productId}`);
+    const result = res.data;
+    if (typeof result !== "boolean") {
+      throw "Error returned variable wasn't a boolean";
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }
 
 export { getProductList, deleteProduct };

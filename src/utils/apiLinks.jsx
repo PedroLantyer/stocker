@@ -10,6 +10,7 @@ function getLoginValidationUrl(username, password) {
   }
 }
 
+const deleteProductLink = `${hostLink}/deleteproduct?productId=`;
 const getProductListLink = `${hostLink}/getproductlist?proprietaryId=`;
 const registerLink = `${hostLink}/register`;
 const userIsDuplicateCheckLink = `${hostLink}/register/usercheck?username=`; //INSERT PARAM AFTER THE EQUAL SIGN
@@ -18,6 +19,7 @@ const emailIsDuplicateCheckLink = `${hostLink}/register/duplicatemail?email=`; /
 export {
   getLoginValidationUrl,
   getProductListLink,
+  deleteProductLink,
   registerLink,
   userIsDuplicateCheckLink,
   emailIsDuplicateCheckLink,

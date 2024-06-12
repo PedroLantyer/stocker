@@ -44,6 +44,14 @@ function StockerApp() {
     <div className="StockerApp">
       <h1>Stocker App</h1>
       <ul className="ProductList">
+        <div className="TitleContainer">
+          <div className="LeftTitleSection">
+            <p className="ProductNameTitle">Product Name</p>
+          </div>
+          <div className="RightTitleSection">
+            <p className="unitCountTitle">Units</p>
+          </div>
+        </div>
         {products.map((product) => (
           <Product
             productObj={product}
