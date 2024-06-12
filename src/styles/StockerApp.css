@@ -1,0 +1,10 @@
+.StockerApp {
+  align-content: center;
+  background-color: #242424;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  height: 80vw;
+  width: 80vw;
+  position: relative;
+  border-radius: 3vh;
+}

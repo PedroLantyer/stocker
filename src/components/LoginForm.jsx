@@ -16,7 +16,6 @@ function LoginForm() {
       return;
     }
 
-    //const loginIsValid = await validateLoginInfo(username, password);
     const userObj = await validateLoginInfo(username, password);
     try {
       if (typeof userObj !== "object") {

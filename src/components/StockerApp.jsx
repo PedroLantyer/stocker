@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUrl } from "../utils/routerPath";
+import "../styles/StockerApp.css";
 
 function getDefaultState(state) {
   if (state === null || typeof state !== "object") {
@@ -26,7 +27,7 @@ function StockerApp() {
   }); //IF Not logged in, send user back to login screen
 
   return (
-    <div>
+    <div className="StockerApp">
       <h1>Stocker App</h1>
     </div>
   );
