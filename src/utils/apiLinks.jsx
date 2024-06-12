@@ -33,8 +33,9 @@ function getUpdateUnitCountUrl(productId, unitCount) {
 const deleteProductLink = `${hostLink}/deleteproduct?productId=`;
 const getProductListLink = `${hostLink}/getproductlist?proprietaryId=`;
 const registerLink = `${hostLink}/register`;
-const userIsDuplicateCheckLink = `${hostLink}/register/usercheck?username=`; //INSERT PARAM AFTER THE EQUAL SIGN
-const emailIsDuplicateCheckLink = `${hostLink}/register/duplicatemail?email=`; //INSERT PARAM AFTER THE EQUAL SIGN
+const userIsDuplicateCheckLink = `${hostLink}/register/usercheck?username=`;
+const emailIsDuplicateCheckLink = `${hostLink}/register/duplicatemail?email=`;
+const addProductLink = `${hostLink}/addproduct`;
 
 export {
   getLoginValidationUrl,
@@ -45,4 +46,5 @@ export {
   registerLink,
   userIsDuplicateCheckLink,
   emailIsDuplicateCheckLink,
+  addProductLink,
 };

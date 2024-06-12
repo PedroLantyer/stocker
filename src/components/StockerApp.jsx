@@ -6,6 +6,7 @@ import getDefaultState from "../utils/getDefaultState";
 import { getProductList } from "../utils/productManagament";
 import Product from "./Product";
 import PlusCircle from "../assets/plusCircle.svg?react";
+import AddProductModal from "./AddProductModal";
 
 function StockerApp() {
   const { state } = useLocation();
@@ -64,6 +65,7 @@ function StockerApp() {
         ))}
       </ul>
       <div className="ButtonAddItemContainer">
+        <AddProductModal open={addIsOpen} onClose={getProducts(true)} />
         <button
           type="button"
           className="ButtonAddItem"

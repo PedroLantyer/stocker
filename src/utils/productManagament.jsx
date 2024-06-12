@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  addProductLink,
   deleteProductLink,
   getProductListLink,
   getUpdateProductNameUrl,
@@ -63,6 +64,26 @@ async function updateUnitCount(productId, unitCount) {
       throw "Error: API URL is invalid";
     }
     const res = await axios.patch(url);
+    const result = res.data;
+    if (typeof result !== "boolean") {
+      throw "Error: returned variable wasn't a boolean";
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+async function addProduct(productName, unitCount, proprietaryId) {
+  try {
+    const url = addProductLink;
+    const dataObj = {
+      productName: productName,
+      unitCount: unitCount,
+      proprietaryId: proprietaryId,
+    };
+    const res = await axios.post(url, dataObj);
     const result = res.data;
     if (typeof result !== "boolean") {
       throw "Error: returned variable wasn't a boolean";
