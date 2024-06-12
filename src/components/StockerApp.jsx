@@ -42,7 +42,6 @@ function StockerApp() {
 
   return (
     <div className="StockerApp">
-      <h1>Stocker App</h1>
       <ul className="ProductList">
         <div className="TitleContainer">
           <div className="LeftTitleSection">
