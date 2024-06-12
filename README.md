@@ -1,5 +1,6 @@
 #Instruções:
 - Executar o arquivo "BUILD - runApi.bat" localizado na raiz do repo.
+- Executar o script "Create Database.sql" localizado na pasta "db"
 - Ainda na raiz do repo, abrir o CMD e executar o comando npm run build.
 - Executar o arquivo "BUILD - runWebServer.bat" localizado na raiz do repo.
 
