@@ -1,10 +1,3 @@
-# INSTRUÇÕES:
-* Executar o arquivo "**BUILD - Do This First.bat**" localizado na raiz do repo.
-* Executar o arquivo "**BUILD - runApi.bat**" localizado na raiz do repo.
-* Executar o script "**Create Database.sql**" localizado na pasta "db"
-* Ainda na raiz do repo, abrir o CMD e executar o comando npm run build.
-* Executar o arquivo "**BUILD - runWebServer.bat**" localizado na raiz do repo.
-
 ## IMPORTANTE:
 * O React utiliza as **portas 5173 e 4173**.
 * O MySQL utiliza a **porta 3306**.
