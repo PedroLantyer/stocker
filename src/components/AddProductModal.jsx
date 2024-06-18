@@ -7,7 +7,7 @@ import { addProduct } from "../utils/productManagament";
 
 function AddProductModal({ open, onClose, proprietaryId }) {
   const [newProductName, setNewProductName] = useState("");
-  const [newUnitCount, setNewUnitCount] = useState(-1);
+  const [newUnitCount, setNewUnitCount] = useState(1);
 
   async function handleConfirmClick() {
     if (newProductName.size < 3 || newUnitCount < 0) {
@@ -50,6 +50,7 @@ function AddProductModal({ open, onClose, proprietaryId }) {
             onChange={(e) => setNewUnitCount(e.target.value)}
             className="InputBoxAlterCount"
             min={"0"}
+            value={newUnitCount}
             required={true}
           />
           <br />
